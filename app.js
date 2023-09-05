@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
-var hbs = require('hbs');
+let hbs = require('hbs')
+const dotenv = require('dotenv').config()
+let port=process.env.PORT
+
 //? SERVIR CONTENIDO STATIC & HANDLEBARS
 app.set('view engine','hbs')
 
@@ -36,8 +39,8 @@ app.get('/elements', (request, response) => {
 })
 
 //! CUALQUIER RUTA QUE  O SEAN LAS ANTERIORES
-// app.get('*',(request,response)=>{
-//     response.sendFile(__dirname+'/public/404.html')
-// })
-
-app.listen(8080)
+app.get('*',(request,response)=>{
+    response.sendFile(__dirname+'/public/404.html')
+})
+console.log(`usando el puerto: ${port}`)
+app.listen(port)
